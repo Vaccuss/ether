@@ -65,8 +65,12 @@ def build_single(target):
 
 def add_libraries(src_path, destination_path):
     # adds common libraries' to endpoints
-    lib_path = os.path.join(src_path, "lib")
-    shutil.copytree(src_path, destination_path, ignore=shutil.ignore_patterns('*.py'))
+    dr = os.getcwd()
+    src = os.path.join(dr, "src")
+    dirs, files = os.walk(src)
+    destination_path = os.path.join(dr, ".tmp", "utils")
+
+    shutil.copytree(files[0], destination_path)
 
 
 def get_code():
