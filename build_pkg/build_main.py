@@ -67,10 +67,10 @@ def add_libraries(src_path, destination_path):
     # adds common libraries' to endpoints
     dr = os.getcwd()
     src = os.path.join(dr, "src")
-    dirs, files = os.walk(src)
+    root, dirs, files = os.walk(src)
     destination_path = os.path.join(dr, ".tmp", "utils")
 
-    shutil.copytree(files[0], destination_path)
+    shutil.copytree(dirs[0], destination_path)
 
 
 def get_code():
