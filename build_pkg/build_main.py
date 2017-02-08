@@ -1,6 +1,7 @@
 import os
 import shutil
 import click
+from .Libraries import add_libraries
 
 
 @click.command()
@@ -39,7 +40,7 @@ def build_all():
             shutil.copy2(os.path.join(dr, endpoint), path)
             archive_file(endpoint, path)
             shutil.rmtree(".tmp")
-    print("Build done")
+    print("...done")
 
 
 def build_single(target):
@@ -51,6 +52,7 @@ def build_single(target):
         shutil.rmtree(".tmp")
 
     add_libraries(dr, path)
+
     if not os.path.exists(path):
         os.makedirs(path)
 
@@ -60,13 +62,7 @@ def build_single(target):
     shutil.copy2(os.path.join(dr, target), path)
     archive_file(target, path)
     shutil.rmtree(".tmp")
-    print("Build done")
-
-
-def add_libraries(src_path, destination_path):
-    # adds common libraries' to endpoints
-    lib_path = os.path.join(src_path, "lib")
-    shutil.copytree(src_path, destination_path, ignore=shutil.ignore_patterns('*.py'))
+    print("...done")
 
 
 def get_code():
